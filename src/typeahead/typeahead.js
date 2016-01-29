@@ -38,7 +38,14 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
     if (!minLength && minLength !== 0) {
       minLength = 1;
     }
-
+    originalScope.$watch(attrs.typeaheadMinLength, function (newVal) {
+        if (!newVal && newVal !== 0) {
+            minLength = 1;
+        } else {
+            minLength = newVal;
+        }
+    });
+    
     //minimal wait time after last character typed before typeahead kicks-in
     var waitTime = originalScope.$eval(attrs.typeaheadWaitMs) || 0;
 
