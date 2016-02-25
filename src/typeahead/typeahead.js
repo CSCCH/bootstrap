@@ -434,6 +434,9 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
         modelCtrl.$viewValue = '';
         element.val('');
       }
+      if (scope.activeIdx === -1 && !selected) {
+          modelCtrl.$setViewValue(null);
+      }
       hasFocus = false;
       selected = false;
     });
