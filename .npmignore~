@@ -37,4 +37,4 @@ ROADMAP.md
 dist/assets
 dist/index.html
 dist/versions-mapping.json
-#dist/*-SNAPSHOT*
+dist/*-SNAPSHOT*
