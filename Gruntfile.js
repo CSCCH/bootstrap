@@ -183,6 +183,8 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.registerTask('custom-build', ['before-test', 'after-test']);
+
   //register before and after test tasks so we've don't have to change cli
   //options on the google's CI server
   grunt.registerTask('before-test', ['enforce', 'ddescribe-iit', 'eslint', 'html2js']);
