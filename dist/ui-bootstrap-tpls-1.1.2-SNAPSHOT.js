@@ -6346,9 +6346,8 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
           modelCtrl.$setViewValue('');
           element.val('');
           isNoResultsSetter(originalScope, false);
+          selected = false;
       }
-      hasFocus = false;
-      selected = false;
     });
 
     // Keep reference to click handler to unbind it.
