@@ -6264,9 +6264,9 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
 
       //return focus to the input element if a match was selected via a mouse click event
       // use timeout to avoid $rootScope:inprog error
-      if (scope.$eval(attrs.typeaheadFocusOnSelect) !== false) {
+      /*if (scope.$eval(attrs.typeaheadFocusOnSelect) !== false) {
         $timeout(function() { element[0].focus(); }, 0, false);
-      }
+      }*/
     };
 
     //bind keyboard events: arrows up(38) / down(40), enter(13) and tab(9), esc(27)
