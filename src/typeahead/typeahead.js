@@ -413,7 +413,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
 
     element.bind('focus', function (evt) {
       hasFocus = true;
-      if (minLength === 0 && !modelCtrl.$viewValue) {
+      if (minLength === 0) {
         $timeout(function() {
           getMatchesAsync(modelCtrl.$viewValue, evt);
         }, 0);
@@ -421,6 +421,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
     });
 
     element.bind('blur', function(evt) {
+      hasFocus = false;
       if (isSelectOnBlur && scope.matches.length && scope.activeIdx !== -1 && !selected) {
         selected = true;
         scope.$apply(function() {
