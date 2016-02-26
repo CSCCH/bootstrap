@@ -434,11 +434,9 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
         });
       }
       if (!isEditable && modelCtrl.$error.editable) {
-        modelCtrl.$viewValue = '';
-        element.val('');
-      }
-      if (scope.activeIdx === -1 && !selected) {
-          modelCtrl.$setViewValue(null);
+          modelCtrl.$setViewValue('');
+          element.val('');
+          isNoResultsSetter(originalScope, false);
       }
       hasFocus = false;
       selected = false;
@@ -495,9 +493,8 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
       //plug into $parsers pipeline to open a typeahead on view changes initiated from DOM
       //$parsers kick-in on all the changes coming from the view as well as manually triggered by $setViewValue
       modelCtrl.$parsers.unshift(function(inputValue) {
-        hasFocus = true;
 
-        if (minLength === 0 || inputValue && inputValue.length >= minLength) {
+        if ((minLength === 0 || inputValue && inputValue.length >= minLength) && hasFocus) {
           if (waitTime > 0) {
             cancelPreviousTimeout();
             scheduleSearchWithTimeout(inputValue);
