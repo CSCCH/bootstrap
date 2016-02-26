@@ -6329,7 +6329,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
       }
     });
 
-    element.bind('blur', function(evt) {
+    element.bind('blur', function (evt) {
       hasFocus = false;
       if (isSelectOnBlur && scope.matches.length && scope.activeIdx !== -1 && !selected) {
         selected = true;
@@ -6342,12 +6342,12 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
             scope.select(scope.activeIdx, evt);
           }
         });
-      }
-      if (!isEditable && modelCtrl.$error.editable) {
+      } else if (!isEditable && modelCtrl.$error.editable && scope.activeIdx === -1) {
+          selected = false;
           modelCtrl.$setViewValue('');
           element.val('');
           isNoResultsSetter(originalScope, false);
-          selected = false;
+          originalScope.$digest();
       }
     });
 
