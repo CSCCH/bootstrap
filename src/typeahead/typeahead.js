@@ -434,11 +434,12 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
           }
         });
       } else if (!isEditable && modelCtrl.$error.editable && scope.activeIdx === -1) {
-          selected = false;
-          modelCtrl.$setViewValue('');
-          element.val('');
-          isNoResultsSetter(originalScope, false);
-          originalScope.$digest();
+          $timeout(function () {
+              selected = false;
+              modelCtrl.$setViewValue('');
+              element.val('');
+              isNoResultsSetter(originalScope, false);
+          });
       }
     });
 
