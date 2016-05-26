@@ -40,6 +40,11 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
     }
     originalScope.$watch(attrs.typeaheadMinLength, function (newVal) {
         minLength = !newVal && newVal !== 0 ? 1 : newVal;
+        if (((modelCtrl.$viewValue && minLength < modelCtrl.$viewValue.length) || minLength === 0) && hasFocus) {
+            $timeout(function () {
+                getMatchesAsync(modelCtrl.$viewValue);
+            }, 0);
+        }
     });
     
     //minimal wait time after last character typed before typeahead kicks-in
